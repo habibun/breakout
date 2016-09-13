@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <title>Gamedev Canvas Workshop</title>
     <style>
-        * { padding: 0; margin: 0; }
-        canvas { background: #eee; display: block; margin: 0 auto; }
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        canvas {
+            background: #eee;
+            display: block;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -67,8 +74,17 @@
         if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
             dx = -dx;
         }
-        if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+        if(y + dy < ballRadius) {
             dy = -dy;
+        } else if(y + dy > canvas.height - ballRadius){
+            if(x >paddleX && x < paddleX+paddleWidth) {
+                dy = -dy;
+            }
+            else {
+                alert("GAME OVER");
+                document.location.reload();
+            }
+
         }
 
         if(rightPressed && paddleX < canvas.width-paddleWidth) {
